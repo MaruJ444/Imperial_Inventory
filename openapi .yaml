@@ -1,0 +1,406 @@
+openapi: 3.0.0
+info:
+  title: Imperial Inventory API
+  description: API para gestionar el inventario
+  version: 1.0.0
+servers:
+  - url: http://localhost/imperial-inventory
+paths:
+  /Administrador/controlador/listarProductos.php:
+    get:
+      summary: Listar Productos
+      responses:
+        '200':
+          description: Lista de productos
+
+  /Administrador/controlador/frmAgregarProducto.php:
+    get:
+      summary: Formulario para agregar un producto
+      responses:
+        '200':
+          description: Formulario HTML para agregar un producto
+
+    post:
+      summary: Agregar un producto
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nombre:
+                  type: string
+                descripcion:
+                  type: string
+                precio:
+                  type: number
+                cantidad:
+                  type: integer
+      responses:
+        '201':
+          description: Producto agregado exitosamente
+
+  /Administrador/controlador/frmActualizarProductos.php:
+    parameters:
+      - in: query
+        name: idproductos
+        required: true
+        schema:
+          type: integer
+    get:
+      summary: Formulario para actualizar un producto
+      responses:
+        '200':
+          description: Formulario HTML para actualizar un producto
+
+    put:
+      summary: Actualizar un producto
+      parameters:
+        - in: query
+          name: idproductos
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nombre:
+                  type: string
+                descripcion:
+                  type: string
+                precio:
+                  type: number
+                cantidad:
+                  type: integer
+      responses:
+        '200':
+          description: Producto actualizado exitosamente
+        '404':
+          description: Producto no encontrado
+
+  /Administrador/controlador/listarCategorias.php:
+    get:
+      summary: Listar Categorías
+      responses:
+        '200':
+          description: Lista de categorías
+
+  /Administrador/controlador/frmAgregarCategorias.php:
+    get:
+      summary: Formulario para agregar una categoría
+      responses:
+        '200':
+          description: Formulario HTML para agregar una categoría
+
+    post:
+      summary: Agregar una categoría
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nombre:
+                  type: string
+      responses:
+        '201':
+          description: Categoría agregada exitosamente
+
+  /Administrador/controlador/frmActualizarCategorias.php:
+    parameters:
+      - in: query
+        name: codigo
+        required: true
+        schema:
+          type: integer
+    get:
+      summary: Formulario para actualizar una categoría
+      responses:
+        '200':
+          description: Formulario HTML para actualizar una categoría
+
+    put:
+      summary: Actualizar una categoría
+      parameters:
+        - in: query
+          name: codigo
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nombre:
+                  type: string
+      responses:
+        '200':
+          description: Categoría actualizada exitosamente
+        '404':
+          description: Categoría no encontrada
+
+  /Administrador/controlador/frmCambioestadoCategorias.php:
+    parameters:
+      - in: query
+        name: codigo
+        required: true
+        schema:
+          type: integer
+    get:
+      summary: Formulario para cambiar el estado de una categoría
+      responses:
+        '200':
+          description: Formulario HTML para cambiar el estado de una categoría
+
+    put:
+      summary: Cambiar estado de una categoría
+      parameters:
+        - in: query
+          name: codigo
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                estado:
+                  type: string
+                  enum: [activo, inactivo]
+      responses:
+        '200':
+          description: Estado de categoría cambiado exitosamente
+        '404':
+          description: Categoría no encontrada
+
+  /Administrador/controlador/listarProveedores.php:
+    get:
+      summary: Listar Proveedores
+      responses:
+        '200':
+          description: Lista de proveedores
+
+  /Administrador/controlador/frmAgregarProveedores.php:
+    get:
+      summary: Formulario para agregar un proveedor
+      responses:
+        '200':
+          description: Formulario HTML para agregar un proveedor
+
+    post:
+      summary: Agregar un proveedor
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nombre:
+                  type: string
+                direccion:
+                  type: string
+                telefono:
+                  type: string
+                email:
+                  type: string
+      responses:
+        '201':
+          description: Proveedor agregado exitosamente
+
+  /Administrador/controlador/frmActualizarProveedores.php:
+    parameters:
+      - in: query
+        name: proveedor
+        required: true
+        schema:
+          type: integer
+    get:
+      summary: Formulario para actualizar un proveedor
+      responses:
+        '200':
+          description: Formulario HTML para actualizar un proveedor
+
+    put:
+      summary: Actualizar un proveedor
+      parameters:
+        - in: query
+          name: proveedor
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nombre:
+                  type: string
+                direccion:
+                  type: string
+                telefono:
+                  type: string
+                email:
+                  type: string
+      responses:
+        '200':
+          description: Proveedor actualizado exitosamente
+        '404':
+          description: Proveedor no encontrado
+
+  /Administrador/controlador/listarEntradas.php:
+    get:
+      summary: Listar Entradas
+      responses:
+        '200':
+          description: Lista de entradas
+
+  /Administrador/controlador/frmAgregarEntradas.php:
+    get:
+      summary: Formulario para agregar una entrada
+      responses:
+        '200':
+          description: Formulario HTML para agregar una entrada
+
+  /Administrador/controlador/listarPedidos.php:
+    get:
+      summary: Listar Pedidos
+      responses:
+        '200':
+          description: Lista de pedidos
+
+  /Administrador/controlador/frmAgregarPedidos.php:
+    get:
+      summary: Formulario para agregar un pedido
+      responses:
+        '200':
+          description: Formulario HTML para agregar un pedido
+
+  /Administrador/controlador/listarVentas.php:
+    get:
+      summary: Listar Ventas
+      responses:
+        '200':
+          description: Lista de ventas
+
+  /Administrador/controlador/frmAgregarVentas.php:
+    get:
+      summary: Formulario para agregar una venta
+      responses:
+        '200':
+          description: Formulario HTML para agregar una venta
+
+  /Administrador/controlador/frmActualizarVentas.php:
+    parameters:
+      - in: query
+        name: idventas
+        required: true
+        schema:
+          type: integer
+    get:
+      summary: Formulario para actualizar una venta
+      responses:
+        '200':
+          description: Formulario HTML para actualizar una venta
+
+    put:
+      summary: Actualizar una venta
+      parameters:
+        - in: query
+          name: idventas
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {} # Corrección aquí, se debe definir un objeto vacío
+      responses:
+        '200':
+          description: Venta actualizada exitosamente
+        '404':
+          description: Venta no encontrada
+
+  /Administrador/controlador/listarUsuarios.php:
+    get:
+      summary: Listar Usuarios
+      responses:
+        '200':
+          description: Lista de usuarios
+
+  /Administrador/modelo/registrar.php:
+    post:
+      summary: Registrar Usuario
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nombre:
+                  type: string
+                apellido:
+                  type: string
+                email:
+                  type: string
+                contraseña:
+                  type: string
+      responses:
+        '201':
+          description: Usuario registrado exitosamente
+
+  /Administrador/controlador/frmActualizarUsuario.php:
+    parameters:
+      - in: query
+        name: idusuario
+        required: true
+        schema:
+          type: integer
+    get:
+      summary: Formulario para actualizar un usuario
+      responses:
+        '200':
+          description: Formulario HTML para actualizar un usuario
+
+    put:
+      summary: Actualizar un usuario
+      parameters:
+        - in: query
+          name: idusuario
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nombre:
+                  type: string
+                apellido:
+                  type: string
+                email:
+                  type: string
+      responses:
+        '200':
+          description: Usuario actualizado exitosamente
+        '404':
+          description: Usuario no encontrado
